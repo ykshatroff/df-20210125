@@ -1,2 +1,9 @@
 import os
-print(f"Hello world, {os.environ['SECRET']}")
+
+
+def hello():
+    return f"Hello world, {os.environ['SECRET']}"
+
+
+if __name__ == '__main__':
+    print(hello())

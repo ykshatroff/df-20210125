@@ -14,6 +14,7 @@ services:
       - postgres
     environment:
       SECRET: "${SECRET}"
+      PYTHONPATH: "/app/df"
 
   postgres:
     image: postgres:12
