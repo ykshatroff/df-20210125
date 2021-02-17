@@ -46,3 +46,6 @@ def test_class_hello():
         assert error.match("Bad user")
         assert isinstance(error.value, ValueError)
 
+    with patch.object(hello_object, 'get_user') as mock_get_user:
+        mock_get_user().get_name.return_value = 'Someone'  # Hello().get_user().get_name.return_value
+        assert hello_object.output() == f"Hello world, Someone"

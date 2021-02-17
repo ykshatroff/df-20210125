@@ -21,7 +21,7 @@ class Hello:
         return self.user
 
     def output(self):
-        return f"Hello world, {self.get_user().name}"
+        return f"Hello world, {self.get_user().get_name()}"
 
 
 if __name__ == '__main__':
