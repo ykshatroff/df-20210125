@@ -1,4 +1,5 @@
 import os
+from unittest.mock import patch
 
 import pytest
 
@@ -7,12 +8,10 @@ from hello import hello
 
 @pytest.fixture()
 def os_environ_user():
-    old_env = os.environ['SECRET']
     user = 'user'
-    os.environ['SECRET'] = user
-    yield user
+    with patch.object(os, 'environ', {'SECRET': user}):
+        yield user
     # wrap up
-    os.environ['SECRET'] = old_env
 
 
 def test_hello():
