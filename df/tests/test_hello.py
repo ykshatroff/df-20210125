@@ -49,3 +49,24 @@ def test_class_hello():
     with patch.object(hello_object, 'get_user') as mock_get_user:
         mock_get_user().get_name.return_value = 'Someone'  # Hello().get_user().get_name.return_value
         assert hello_object.output() == f"Hello world, Someone"
+
+
+@pytest.mark.parametrize('name,param1', [
+    (
+            "Username", "Unused",
+    ),
+    pytest.param(
+        "Username", "Unused",
+        id="Username - Unused",
+    ),
+    pytest.param(
+        "Username2", "Unused",
+        id="Username2 - Unused",
+    ),
+])
+def test_parameter_hello(name, param1):
+
+    hello_object = Hello()
+    with patch.object(hello_object, 'get_user') as mock_get_user:
+        mock_get_user().get_name.return_value = name
+        assert hello_object.output() == f"Hello world, Username"
