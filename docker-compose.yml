@@ -9,20 +9,8 @@ services:
       - "8000:80"
     volumes:
       - ".:/app"
-    command: python -m df.hello
-    depends_on:
-      - postgres
+#    command: gunicorn main:app --workers 2 --bind :80
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 80
     environment:
       SECRET: "${SECRET}"
       PYTHONPATH: "/app/df"
-
-  postgres:
-    image: postgres:12
-    ports:
-      - "5432"
-    volumes:
-      - ".data/postgres:/var/lib/postgresql/data"
-    environment:
-      # credentials taken from .env file
-      POSTGRES_USER: "${POSTGRES_USERNAME}"
-      POSTGRES_PASSWORD: "password"
